@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using WAD13523.Data;
+using WAD13523.DAL.Data;
+using WAD13523.DAL.Models;
+using WAD13523.DAL.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,9 @@ builder.Services.AddDbContext<FilmReviewDbContext13523>(
     options => options.UseSqlServer(
         builder.Configuration.GetConnectionString("SqlServerConnectionString"))
     );
+
+builder.Services.AddScoped<IRepository<Film13523>, FilmRepository13523>();
+builder.Services.AddScoped<IRepository<Review13523>, ReviewRepository13523>();
 
 var app = builder.Build();
 

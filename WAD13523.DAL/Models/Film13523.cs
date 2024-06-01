@@ -1,7 +1,7 @@
 ﻿
 using System.Text.Json.Serialization;
 
-namespace WAD13523.Models
+namespace WAD13523.DAL.Models
 {
     public class Film13523
     {
@@ -13,6 +13,6 @@ namespace WAD13523.Models
         public int Duration { get; set; }
         public string Summary { get; set; }
         [JsonIgnore]
-        public ICollection<Review13523> Reviews { get; set; }
+        public ICollection<Review13523>? Reviews { get; set; } = new List<Review13523>();
     }
 }

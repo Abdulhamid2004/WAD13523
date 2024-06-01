@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WAD13523.Data;
-using WAD13523.Models;
+using WAD13523.DAL.Models;
+using WAD13523.DAL.Repositories;
 
 namespace WAD13523.Controllers
 {
@@ -14,33 +14,30 @@ namespace WAD13523.Controllers
     [ApiController]
     public class Review13523Controller : ControllerBase
     {
-        private readonly FilmReviewDbContext13523 _context;
+        private readonly IRepository<Review13523> _repository;
 
-        public Review13523Controller(FilmReviewDbContext13523 context)
+        public Review13523Controller(IRepository<Review13523> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         // GET: api/Review13523
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Review13523>>> GetReviews()
         {
-          if (_context.Reviews == null)
-          {
-              return NotFound();
-          }
-            return await _context.Reviews.ToListAsync();
+            var reviews = await _repository.GetAllItems();
+            if (reviews == null)
+            {
+                return NotFound();
+            }
+            return Ok(reviews);
         }
 
         // GET: api/Review13523/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Review13523>> GetReview13523(int id)
         {
-          if (_context.Reviews == null)
-          {
-              return NotFound();
-          }
-            var review13523 = await _context.Reviews.FindAsync(id);
+            var review13523 = await _repository.GetItemByID(id);
 
             if (review13523 == null)
             {
@@ -59,23 +56,7 @@ namespace WAD13523.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(review13523).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!Review13523Exists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _repository.UpdateItem(review13523);
 
             return NoContent();
         }
@@ -84,35 +65,18 @@ namespace WAD13523.Controllers
         [HttpPost]
         public async Task<ActionResult<Review13523>> PostReview13523(Review13523 review13523)
         {
-            _context.Reviews.Add(review13523);
-            await _context.SaveChangesAsync();
+            await _repository.AddItem(review13523);
 
-            return CreatedAtAction("GetReview13523", new { id = review13523.Id }, review13523);
+            return CreatedAtAction("GetFilm13523", new { id = review13523.Id }, review13523);
         }
 
         // DELETE: api/Review13523/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteReview13523(int id)
         {
-            if (_context.Reviews == null)
-            {
-                return NotFound();
-            }
-            var review13523 = await _context.Reviews.FindAsync(id);
-            if (review13523 == null)
-            {
-                return NotFound();
-            }
-
-            _context.Reviews.Remove(review13523);
-            await _context.SaveChangesAsync();
+            await _repository.DeleteItem(id);
 
             return NoContent();
-        }
-
-        private bool Review13523Exists(int id)
-        {
-            return (_context.Reviews?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

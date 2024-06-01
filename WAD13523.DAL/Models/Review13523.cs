@@ -1,4 +1,4 @@
-﻿namespace WAD13523.Models
+﻿namespace WAD13523.DAL.Models
 {
     public class Review13523
     {
@@ -7,6 +7,6 @@
         public string Comment { get; set; }
         public bool HasSpoilers { get; set; }
         public int FilmId { get; set; }
-        public Film13523 Film { get; set; }
+        public Film13523? Film { get; set; }
     }
 }

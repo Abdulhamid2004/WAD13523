@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WAD13523.Data;
+using WAD13523.DAL.Data;
 
 #nullable disable
 
-namespace WAD13523.Data.Migrations
+namespace WAD13523.DAL.Data.Migrations
 {
     [DbContext(typeof(FilmReviewDbContext13523))]
-    partial class FilmReviewDbContext13523ModelSnapshot : ModelSnapshot
+    [Migration("20240601035109_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace WAD13523.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("WAD13523.Models.Film13523", b =>
+            modelBuilder.Entity("WAD13523.DAL.Models.Film13523", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -57,7 +60,7 @@ namespace WAD13523.Data.Migrations
                     b.ToTable("Films");
                 });
 
-            modelBuilder.Entity("WAD13523.Models.Review13523", b =>
+            modelBuilder.Entity("WAD13523.DAL.Models.Review13523", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,9 +88,9 @@ namespace WAD13523.Data.Migrations
                     b.ToTable("Reviews");
                 });
 
-            modelBuilder.Entity("WAD13523.Models.Review13523", b =>
+            modelBuilder.Entity("WAD13523.DAL.Models.Review13523", b =>
                 {
-                    b.HasOne("WAD13523.Models.Film13523", "Film")
+                    b.HasOne("WAD13523.DAL.Models.Film13523", "Film")
                         .WithMany("Reviews")
                         .HasForeignKey("FilmId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -96,7 +99,7 @@ namespace WAD13523.Data.Migrations
                     b.Navigation("Film");
                 });
 
-            modelBuilder.Entity("WAD13523.Models.Film13523", b =>
+            modelBuilder.Entity("WAD13523.DAL.Models.Film13523", b =>
                 {
                     b.Navigation("Reviews");
                 });

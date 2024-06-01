@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WAD13523.Models;
+using WAD13523.DAL.Models;
 
-namespace WAD13523.Data
+namespace WAD13523.DAL.Data
 {
     public class FilmReviewDbContext13523 : DbContext
     {
