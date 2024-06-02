@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="flex-1">
+    <button mat-icon-button (click)="onHomeIconClicked()" aria-label="Home">
+        <mat-icon>home</mat-icon>
+    </button>
+    <span class="flex-grow">Film Reviews App</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="AddFilmClicked()">Add Film</button>
+        <button mat-menu-item (click)="AddReviewClicked()">Create Review</button>
+    </mat-menu>
+</mat-toolbar>

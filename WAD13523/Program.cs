@@ -5,6 +5,21 @@ using WAD13523.DAL.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var corsSettings = "corsSettings";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(corsSettings,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowAnyOrigin();
+        });
+});
+
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -32,6 +47,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseCors(corsSettings);
 
 app.MapControllers();
 

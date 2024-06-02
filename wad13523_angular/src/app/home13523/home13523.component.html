@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Popular Films</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="flex flex-wrap"> <div *ngFor="let film of films" class="w-full mb-4 px-4 py-2 rounded-md shadow-md bg-gray-100 flex flex-col">
+        <div>
+          <p class="text-lg font-bold"> {{ film.title }} </p>
+          <span class="text-gray-500 text-sm font-italic">({{ film.releaseYear }})</span>
+        </div>
+        <div class="flex mt-2">
+          <span class="text-gray-500 mr-4">Director: {{ film.director }}</span>
+          <span class="text-gray-500">Genre: {{ film.genre }}</span>
+        </div>
+        <div class="flex mt-2">
+          <span class="text-gray-500 mr-4">Duration: {{ film.duration }} mins</span>
+          <div class="text-gray-500 overflow-hidden whitespace-nowrap text-ellipsis">
+            Summary: {{ film.summary.slice(0, 200) }}...
+          </div>
+        </div>
+        <div class="flex justify-end mt-4">
+          <button mat-flat-button color="primary" (click)="DetailsClicked(film.id)" class="mr-2">
+            See Details
+          </button>
+          <button mat-flat-button color="warn" (click)="DeleteClicked(film.id)" class="mr-2">
+            Delete
+          </button>
+          <button mat-flat-button color="accent" (click)="EditClicked(film.id)" class="mr-2">
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

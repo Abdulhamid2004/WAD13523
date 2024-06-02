@@ -1,0 +1,34 @@
+<div class="flex justify-center">
+    <form class="shadow border rounded-md p-4 flex flex-col gap-4 w-full md:w-1/2">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput name="title" type="text" [(ngModel)]="editFilm.title" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Director</mat-label>
+        <input matInput name="director" type="text" [(ngModel)]="editFilm.director" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Genre</mat-label>
+        <input matInput name="genre" type="text" [(ngModel)]="editFilm.genre" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Release Year</mat-label>
+        <input matInput name="releaseYear" type="number" [(ngModel)]="editFilm.releaseYear" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Duration (mins)</mat-label>
+        <input matInput name="duration" type="number" [(ngModel)]="editFilm.duration" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Summary</mat-label>
+        <textarea matInput name="summary" rows="5" [(ngModel)]="editFilm.summary" required></textarea>
+      </mat-form-field>
+      <div class="flex justify-end">
+        <button mat-raised-button color="primary" (click)="edit()">Edit Film</button>
+      </div>
+      <div class="flex justify-end">
+        <button mat-raised-button color="accent" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>

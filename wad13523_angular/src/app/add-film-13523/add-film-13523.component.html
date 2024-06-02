@@ -1,0 +1,31 @@
+<div class="flex justify-center">
+    <form class="shadow border rounded-md p-4 flex flex-col gap-4 w-full md:w-1/2">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput name="title" type="text" [(ngModel)]="newFilm.title" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Director</mat-label>
+        <input matInput name="director" type="text" [(ngModel)]="newFilm.director" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Genre</mat-label>
+        <input matInput name="genre" type="text" [(ngModel)]="newFilm.genre" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Release Year</mat-label>
+        <input matInput name="releaseYear" type="number" [(ngModel)]="newFilm.releaseYear" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Duration (mins)</mat-label>
+        <input matInput name="duration" type="number" [(ngModel)]="newFilm.duration" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Summary</mat-label>
+        <textarea matInput name="summary" rows="5" [(ngModel)]="newFilm.summary" required></textarea>
+      </mat-form-field>
+      <div class="flex justify-end">
+        <button mat-raised-button color="primary" (click)="createFilm()">Create Film</button>
+      </div>
+    </form>
+  </div>

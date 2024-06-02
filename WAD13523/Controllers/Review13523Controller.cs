@@ -67,7 +67,7 @@ namespace WAD13523.Controllers
         {
             await _repository.AddItem(review13523);
 
-            return CreatedAtAction("GetFilm13523", new { id = review13523.Id }, review13523);
+            return CreatedAtAction("GetReview13523", new { id = review13523.Id }, review13523);
         }
 
         // DELETE: api/Review13523/5

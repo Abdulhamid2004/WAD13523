@@ -1,0 +1,25 @@
+<div class="flex justify-center">
+    <form [(ngModel)]="newReview" class="shadow border rounded-md p-4 flex flex-col gap-4 w-full md:w-1/2">
+      <mat-form-field appearance="fill">
+        <mat-label>Choose Film</mat-label>
+        <mat-select [(ngModel)]="filmId" name="filmId">
+          @for(f of film; track f) {
+            <mat-option [value]="f.id">{{f.title}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Rating (1-5)</mat-label>
+        <input matInput name="rating" type="number" [(ngModel)]="newReview.rating" min="1" max="5">
+        <mat-error *ngIf="newReview.rating < 1 || newReview.rating > 5">Rating must be between 1 and 5</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Review</mat-label>
+        <textarea matInput name="comment" rows="5" [(ngModel)]="newReview.comment"></textarea>
+      </mat-form-field>
+      <mat-checkbox name="hasSpoilers" [(ngModel)]="newReview.hasSpoilers">Does the review contain spoilers?</mat-checkbox>
+      <div class="flex justify-end">
+        <button mat-raised-button color="primary" (click)="create()">Submit Review</button>
+      </div>
+    </form>
+  </div>

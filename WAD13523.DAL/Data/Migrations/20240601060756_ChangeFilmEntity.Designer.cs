@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WAD13523.DAL.Data;
 
@@ -10,9 +11,11 @@ using WAD13523.DAL.Data;
 namespace WAD13523.DAL.Data.Migrations
 {
     [DbContext(typeof(FilmReviewDbContext13523))]
-    partial class FilmReviewDbContext13523ModelSnapshot : ModelSnapshot
+    [Migration("20240601060756_ChangeFilmEntity")]
+    partial class ChangeFilmEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

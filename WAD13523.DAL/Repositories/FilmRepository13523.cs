@@ -31,12 +31,12 @@ namespace WAD13523.DAL.Repositories
 
         public async Task<IEnumerable<Film13523>> GetAllItems()
         {
-            return await _context.Films.ToListAsync();
+            return await _context.Films.Include(f => f.Reviews).ToListAsync();
         }
 
         public async Task<Film13523> GetItemByID(int id)
         {
-            return await _context.Films.FindAsync(id);
+            return await _context.Films.Include(f => f.Reviews).FirstOrDefaultAsync(f => f.ID == id);
         }
 
         public async Task UpdateItem(Film13523 entity)

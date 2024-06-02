@@ -1,0 +1,44 @@
+<mat-card *ngIf="film">
+    <mat-card-header>
+      <mat-card-title>{{ film.title }}</mat-card-title>
+      <mat-card-subtitle class="text-gray-500">{{ film.releaseYear }}</mat-card-subtitle>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <p class="text-gray-700">Director: {{ film.director }}</p>
+          <p class="text-gray-700">Genre: {{ film.genre }}</p>
+          <p class="text-gray-700">Duration: {{ film.duration }} mins</p>
+          <div class="mt-4">
+            <p class="text-gray-700 font-bold">Summary</p>
+            <p class="text-gray-500">{{ film.summary }}</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="mt-8">
+        <mat-card-title>Reviews</mat-card-title>
+        <div *ngIf="!film.reviews?.length">
+          <p class="text-gray-500">No reviews available yet.</p>
+        </div>
+        <div *ngFor="let review of film.reviews">
+          <mat-card class="mb-4">
+            <mat-card-header>
+              <mat-card-title class="text-gray-500">{{ review.rating }} stars</mat-card-title>
+              <button mat-icon-button (click)="editReview(review.id)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="deleteReview(review.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ review.comment }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <p class="text-center text-gray-500" *ngIf="!film">No film selected.</p>

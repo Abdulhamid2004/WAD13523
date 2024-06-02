@@ -9,10 +9,9 @@ namespace WAD13523.DAL.Models
         public string Title { get; set; }
         public string Director { get; set; }
         public string Genre { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public int ReleaseYear { get; set; }
         public int Duration { get; set; }
         public string Summary { get; set; }
-        [JsonIgnore]
         public ICollection<Review13523>? Reviews { get; set; } = new List<Review13523>();
     }
 }
